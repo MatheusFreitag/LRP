@@ -1,112 +1,114 @@
-<div class="container" >
+<div class="container">
   <link rel="stylesheet" href="register.css"charset="utf-8">
   <a href="resources/logout.php"><i class="glyphicon glyphicon-log-out"></i> logout</a>
   <h1>REGISTER A NEW PROJECT</h1>
   </br>
-  <form ng-app="databaseApp" ng-controller="databaseCtrl" role="form" method="post" action="">
+  <div ng-controller="controllerApp">
+    <form role="form" method="post" action="">
+      <div class="row row-register">
+        <div class="col-md-2">
+          <label class="control-label" for="inputSuccess1">Picture</label>
+          <input type="hidden" class="picturePath" name="picturePath" value="">
+          <div class="dropzone" id="myDropzone"></div>
+        </div>
+        <div class="col-md-10">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="professor" name="professor" ng-model="databaseTitle" placeholder="" required>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="title" placeholder="" name="title" ng-model="databaseDescription" rows="5" required></textarea>
+          </div>
+        </div>
+    </div>
     <div class="row row-register">
-      <div class="col-md-2">
-        <label class="control-label" for="inputSuccess1">Picture</label>
-        <input type="hidden" class="picturePath" name="picturePath" value="">
-        <div class="dropzone" id="myDropzone"></div>
-      </div>
-      <div class="col-md-10">
+      <div class="col-md-6">
         <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" name="title" ng-model="databaseTitle" placeholder="" required>
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="example@luc.edu" required>
         </div>
+      </div>
+      <div class="col-md-6">
         <div class="form-group">
-          <label for="description">Description</label>
-          <textarea class="form-control" id="description" placeholder="" name="description" ng-model="databaseDescription" rows="5" required></textarea>
+          <label for="external_link">External Link</label>
+          <input type="url" class="form-control" id="external_link" name="external_link" placeholder="http://www.example.com">
         </div>
       </div>
-  </div><!--
-  <div class="row row-register">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="example@luc.edu" required>
-      </div>
     </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="external_link">External Link</label>
-        <input type="url" class="form-control" id="external_link" name="external_link" placeholder="http://www.example.com">
-      </div>
-    </div>
-  </div>
-  <div class="row row-register">
-    <div class="col-md-4">
-      <div class="form-group">
-        <label for="area_study">Area of study</label>
-        <select class="form-control" name="area_study" id="area_study">
-          <option>Artificial Intelligence</option>
-          <option>Cognitive Science</option>
-          <option>Computer Engineering</option>
-          <option>Computer Graphics</option>
-          <option>Network</option>
-          <option>Data Processing</option>
-          <option>Database Systems</option>
-          <option>Cybersecurity</option>
-          <option>Robotics</option>
-          <option>Software Engineering</option>
-          <option>System Analysis</option>
-          <option>Telecomunication Engineering</option>
-          <option>Mobile</option>
-          <option>Web Design</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="form-group">
-        <label for="student">Students</label>
-        <div class="studentMultiple">
-          <div><input type="text" class="form-control student" name="student[]" placeholder="Student's name"></div>
+    <div class="row row-register">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="area_study">Area of study</label>
+          <select class="form-control" name="area_study" id="area_study">
+            <option>Artificial Intelligence</option>
+            <option>Cognitive Science</option>
+            <option>Computer Engineering</option>
+            <option>Computer Graphics</option>
+            <option>Network</option>
+            <option>Data Processing</option>
+            <option>Database Systems</option>
+            <option>Cybersecurity</option>
+            <option>Robotics</option>
+            <option>Software Engineering</option>
+            <option>System Analysis</option>
+            <option>Telecomunication Engineering</option>
+            <option>Mobile</option>
+            <option>Web Design</option>
+          </select>
         </div>
-        <button type="button" class="btn btn-secondary btn-sm add_student"><span class="glyphicon glyphicon-plus"></span> Add Student</button>
-        <button type="button" class="btn btn-secondary btn-sm remove_student"><span class="glyphicon glyphicon-minus"></span> Remove </button>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="form-group">
-        <label for="faculty">Faculty</label>
-        <div class="facultyMultiple">
-          <div><input type="text" class="form-control faculty" name="faculty[]" placeholder="Faculty's name"></div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="student">Students</label>
+          <div class="studentMultiple">
+            <div><input type="text" class="form-control student" name="student[]" placeholder="Student's name"></div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm add_student"><span class="glyphicon glyphicon-plus"></span> Add Student</button>
+          <button type="button" class="btn btn-secondary btn-sm remove_student"><span class="glyphicon glyphicon-minus"></span> Remove </button>
         </div>
-        <button type="button" class="btn btn-secondary btn-sm add_faculty"><span class="glyphicon glyphicon-plus"></span> Add Faculty</button>
-        <button type="button" class="btn btn-secondary btn-sm remove_faculty"><span class="glyphicon glyphicon-minus"></span> Remove </button>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="faculty">Faculty</label>
+          <div class="facultyMultiple">
+            <div><input type="text" class="form-control faculty" name="faculty[]" placeholder="Faculty's name"></div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm add_faculty"><span class="glyphicon glyphicon-plus"></span> Add Faculty</button>
+          <button type="button" class="btn btn-secondary btn-sm remove_faculty"><span class="glyphicon glyphicon-minus"></span> Remove </button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row row-register">
-    <div class="col-md-3">
+    <div class="row row-register">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select class="form-control" name="status" id="status" required>
+            <option value="activeSeeking">Active: Seeking Students</option>
+            <option>Active: Not Seeking Students</option>
+            <option>Arquived</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-9 seekingStudents">
+        <div class="form-group">
+          <label for="prereq">Prerequisites</label>
+          <input type="text" class="form-control" id="prereq" name="prereq" placeholder="Example: Data Structures and Algorithms, Discrete Structures, Python, OOP, etc.">
+        </div>
+      </div>
+    </div>
+    <div class="row row-register">
+      <div class="col-md-12 seekingStudents">
+        <div class="form-group">
+          <label for="howToApply">How to aply?</label>
+          <textarea class="form-control" name="howToApply" id="howToApply" rows="5"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row row-register">
       <div class="form-group">
-        <label for="status">Status</label>
-        <select class="form-control" name="status" id="status" required>
-          <option value="activeSeeking">Active: Seeking Students</option>
-          <option>Active: Not Seeking Students</option>
-          <option>Arquived</option>
-        </select>
+        <input id="submit" class="btnregister center-block" ng-click="insertDatabase()" name="submit" type="submit" value="Register" class="btn btn-primary">
       </div>
-    </div>
-    <div class="col-md-9 seekingStudents">
-      <div class="form-group">
-        <label for="prereq">Prerequisites</label>
-        <input type="text" class="form-control" id="prereq" name="prereq" placeholder="Example: Data Structures and Algorithms, Discrete Structures, Python, OOP, etc.">
-      </div>
-    </div>
-  </div>
-  <div class="row row-register">
-    <div class="col-md-12 seekingStudents">
-      <div class="form-group">
-        <label for="howToApply">How to aply?</label>
-        <textarea class="form-control" name="howToApply" id="howToApply" rows="5"></textarea>
-      </div>
-    </div>
-  </div>-->
-  <div class="row row-register">
-    <div class="form-group">
-      <input id="submit" class="btnregister center-block" ng-click="insertDatabase()" name="submit" type="submit" value="Register" class="btn btn-primary">
     </div>
   </div>
 </div>

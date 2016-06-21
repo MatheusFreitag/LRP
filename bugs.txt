@@ -1,0 +1,1 @@
+- Register Submit will submit twice is email field is empty (doesnt check for the form before submitting)

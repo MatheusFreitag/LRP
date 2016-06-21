@@ -2,11 +2,19 @@
 
 include "connect.php";
 
-$data = json_decode(file_get_contents("php://input"));
-$databaseTitle = mysql_real_escape_string($data->databaseTitle);
-$databaseDescription = mysql_real_escape_string($data->databaseDescription);
+$postdata = file_get_contents("php://input");
+$request = json_decode($postdata);
 
-mysql_query("INSERT INTO $DB_name('Professor', 'Título') VALUES($databaseTitle, $databaseDescription)");
+$professor = $request->professor;
+$title = $request->title;
 
+$sql = "INSERT INTO projects(professor, title) VALUES('$professor', '$title')";
 
+try {
+    //connect as appropriate as above
+    $conn->query($sql); //invalid query!
+    echo "Success";
+} catch(PDOException $ex) {
+    echo "An Error occured!"; //user friendly message
+}
 ?>
