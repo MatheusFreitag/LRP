@@ -16,6 +16,12 @@ app.controller('controllerApp', function($scope, $http){
             data: {
                 title: $scope.title,
                 description: $scope.description,
+                email: $scope.email,
+                externalLink: $scope.externalLink,
+                students: $scope.students,
+                faculty: $scope.faculty,
+                prerequisites: $scope.prerequisites,
+                howToApply: $scope.howToApply,
             },
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     });

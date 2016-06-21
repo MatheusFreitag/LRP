@@ -7,8 +7,14 @@ $request = json_decode($postdata);
 
 $title = $request->title;
 $description = $request->description;
+$email = $request->email;
+$externalLink = $request->externalLink;
+$students = $request->students;
+$faculty = $request->faculty;
+$prerequisites = $request->prerequisites;
+$howToApply = $request->howToApply;
 
-$sql = "INSERT INTO projects(title, description) VALUES('$title', '$description')";
+$sql = "INSERT INTO projects(title, description, email, externalLink, students, faculty, prerequisites, howToApply) VALUES('$title', '$description', '$email', '$externalLink', '$students', '$faculty', '$prerequisites', '$howToApply')";
 
 try {
     //connect as appropriate as above
