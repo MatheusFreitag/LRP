@@ -51,11 +51,11 @@
   <div id="results-search" ng-repeat="project in listOfProjects | filter:filterSearch">
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
       <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">{{project.professor}}</h2>
+        <h2 class="mdl-card__title-text">{{project.title}}</h2>
       </div>
       <div class="mdl-card__supporting-text">
         <img class="photoOfProject" src="base.jpg" width: "100px"; height="80px">
-        {{project.title}}
+        {{project.description}}
       </div>
       <div class="mdl-card__actions mdl-card--border">
         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="">
