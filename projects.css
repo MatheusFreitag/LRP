@@ -1,0 +1,167 @@
+.container{
+  width             : 100%;
+}
+
+/* Search Bar */
+.row{
+  margin-top        : 20px;
+  margin-left       : 15%;
+}
+
+.row-register{
+  margin-left       : 0;
+}
+
+.col-lg-6{
+  width             : 80%;
+}
+
+#refine-search{
+  width             : 100%;
+  margin            : -15px;
+}
+/* End of Search Bar */
+
+
+/* Projects Cards*/
+#search{
+  margin-top          : 30px;
+}
+
+#filter{
+  margin-top          : 30px;
+}
+
+#refine-search{
+  display             : none;
+  margin-top          : 10px;
+  background-color    : #ddd;
+  position            : absolute;
+  box-shadow          : inset  0  8px 4px -8px #aaa,
+                        inset  0 -8px 4px -8px #aaa;
+  padding-left        : 15%;
+  padding-top         : 3px;
+}
+
+
+#refine-search:after {
+  content             : '';
+  width               : 0;
+  height              : 100%;
+  width               : 20%;
+}
+
+.sortby{
+  width               : 300px;
+  float               : left;
+  text-align          : center;
+  padding-bottom      : 10px;
+  padding-top         : 10px;
+}
+
+.sortby p{
+  font-family         : 'Source Sans Pro', sans-serif;
+  font-size           : 20px;
+  color               : #555;
+  text-align          : center;
+}
+
+.dropdown-menu {
+  left                : 50%;
+  right               : auto;
+  text-align          : center;
+  transform           : translate(-50%, 0);
+}
+
+.status{
+  width               : 300px;
+  float               : left;
+  margin-top          : -1px;
+  text-align          : center;
+  border-right-width  : thin;
+  border-right-color  : #aaa;
+  border-right-style  : dashed;
+  border-left-width   : thin;
+  border-left-color   : #aaa;
+  border-left-style   : dashed;
+  padding-bottom      : 10px;
+  padding-top         : 10px;
+}
+
+.status p{
+  font-family         : 'Source Sans Pro', sans-serif;
+  font-size           : 20px;
+  color               : #555;
+  text-align          : center;
+}
+
+.checkbox{
+  font-family         : 'Source Sans Pro', sans-serif;
+  text-align          : left;
+  left                : 10px;
+  right               : auto;
+  color               : #777;
+  font-size           : 15px;
+}
+
+.students{
+  width               : 300px;
+  float               : left;
+  margin-top          : -1px;
+  text-align          : center;
+  padding-bottom      : 10px;
+  padding-top         : 10px;
+}
+
+.students p{
+  font-family         : 'Source Sans Pro', sans-serif;
+  font-size           : 20px;
+  color               : #555;
+  text-align          : center;
+}
+
+.radio{
+  font-family         : 'Source Sans Pro', sans-serif;
+  text-align          : left;
+  left                : 32px;
+  right               : auto;
+  color               : #777;
+  font-size           : 15px;
+}
+
+#results-search{
+  width               : 100%;
+  height              : 100%;
+}
+
+.demo-card-wide.mdl-card {
+  margin-top          : 50px;
+  margin-left         : 10%;
+  width               : 80%;
+}
+.demo-card-wide > .mdl-card__title {
+  font-family         : 'Source Sans Pro', sans-serif;
+  font-size           : 15px;
+  color               : #fff;
+  height              : 56px;
+  background-color    : #90141d;
+}
+
+.mdl-card__supporting-text{
+  font-family         : 'Source Sans Pro', sans-serif;
+  font-size           : 15px;
+}
+
+.mdl-card__supporting-text img{
+  margin-right        :10px;
+  margin-bottom       :10px;
+  float               : left;
+  border-style        : solid;
+  border-color        : #90141d;
+  border-width        : 2px;
+}
+
+.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect{
+  color               : #90141d;
+}
+/* End of Projects Cards*/
