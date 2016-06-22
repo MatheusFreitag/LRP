@@ -1,14 +1,13 @@
-var app = angular.module('portal', []);
+var app = angular.module('portal', ['ui.router']);
 
-
-app.controller("projectsListCtrl", function($scope, $http){
+app.controller("projectsCtrl", function($scope, $http){
   $http.get("projects.php").success(function(data){
     $scope.listOfProjects = data;
   })
 });
 
 
-app.controller('controllerApp', function($scope, $http){
+app.controller('registerCtrl', function($scope, $http){
   $scope.insertDatabase = function(){
     var request = $http({
             method: "post",
@@ -26,4 +25,30 @@ app.controller('controllerApp', function($scope, $http){
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     });
   }
+});
+
+
+app.config(function($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise('/home');
+
+    $stateProvider
+
+        // HOME STATES AND NESTED VIEWS ========================================
+        .state('home', {
+            url: '/home',
+            templateUrl: 'home.html'
+        })
+
+        // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
+        .state('projects', {
+            url: '/projects',
+            templateUrl: 'projects.html'
+        })
+
+        .state('register', {
+            url: '/register',
+            templateUrl: 'register.html'
+        });
+
 });
