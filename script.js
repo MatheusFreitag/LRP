@@ -1,4 +1,4 @@
-var app = angular.module('portal', ['ui.router']);
+var app = angular.module('portal', ['ui.router', 'ngAnimate', 'ui.bootstrap']);
 
 app.controller("projectsCtrl", function($scope, $http){
   $http.get("projects.php").success(function(data){
@@ -8,25 +8,42 @@ app.controller("projectsCtrl", function($scope, $http){
 
 
 app.controller('registerCtrl', function($scope, $http){
-  $scope.insertDatabase = function(){
-    var request = $http({
-            method: "post",
-            url: "register.php",
-            data: {
-                title: $scope.title,
-                description: $scope.description,
-                email: $scope.email,
-                externalLink: $scope.externalLink,
-                students: $scope.students,
-                faculty: $scope.faculty,
-                prerequisites: $scope.prerequisites,
-                howToApply: $scope.howToApply,
-            },
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-    });
-  }
-});
+  $scope.isCollapsed = false;
 
+  $scope.insertDatabase = function(event){
+    var request = $http({
+      method: "post",
+      url: "register.php",
+      data: {
+          title         : $scope.title,
+          description   : $scope.description,
+          email         : $scope.email,
+          externalLink  : $scope.externalLink,
+          students      : $scope.students,
+          faculty       : $scope.faculty,
+          prerequisites : $scope.prerequisites,
+          howToApply    : $scope.howToApply,
+      },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    })
+    $scope.isCollapsed    = !$scope.isCollapsed;
+    $scope.title          = "";
+    $scope.description    = "";
+    $scope.email          = "";
+    $scope.externalLink   = "";
+    $scope.students       = "";
+    $scope.faculty        = "";
+    $scope.prerequisites  = "";
+    $scope.howToApply     = "";
+    $scope.form.$setPristine();
+    event.preventDefault();
+  }
+
+  $scope.closeAlert = function() {
+      $scope.isCollapsed    = !$scope.isCollapsed;
+    };
+
+});
 
 app.config(function($stateProvider, $urlRouterProvider) {
 

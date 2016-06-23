@@ -4,7 +4,8 @@
   <h1>REGISTER A NEW PROJECT</h1>
   </br>
   <div ng-controller="registerCtrl">
-    <form role="form" method="post" action="">
+    <uib-alert ng-show="isCollapsed" type="success" class="alert" close="closeAlert()">Your project was successfully registered!</uib-alert>
+    <form role="form" name="form" method="post" action="">
       <div class="row row-register">
         <div class="col-md-2">
           <label class="control-label" for="inputSuccess1">Picture</label>
@@ -14,11 +15,11 @@
         <div class="col-md-10">
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="professor" name="professor" ng-model="title" placeholder="" required>
+            <input type="text" class="form-control" id="professor" name="professor" ng-model="title" ng-model="clearAll" placeholder="" required>
           </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="title" placeholder="" name="title" ng-model="description" rows="5" required></textarea>
+            <textarea class="form-control" id="title" placeholder="" name="title" ng-model="description" ng-model="clearAll" rows="5" required></textarea>
           </div>
         </div>
     </div>
@@ -26,13 +27,13 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" name="email" ng-model="email" placeholder="example@luc.edu" required>
+          <input type="email" class="form-control" id="email" name="email" ng-model="email" ng-model="clearAll" placeholder="example@luc.edu" required>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="external_link">External Link</label>
-          <input type="url" class="form-control" id="external_link" name="external_link" ng-model="externalLink" placeholder="http://www.example.com">
+          <input type="url" class="form-control" id="external_link" name="external_link" ng-model="externalLink" ng-model="clearAll" placeholder="http://www.example.com">
         </div>
       </div>
     </div>
@@ -62,7 +63,7 @@
         <div class="form-group">
           <label for="student">Students</label>
           <div class="studentMultiple">
-            <div><input type="text" class="form-control student" name="student[]" ng-model="students" placeholder="Student's name"></div>
+            <div><input type="text" class="form-control student" name="student[]" ng-model="students" ng-model="clearAll" placeholder="Student's name"></div>
           </div>
           <button type="button" class="btn btn-secondary btn-sm add_student"><span class="glyphicon glyphicon-plus"></span> Add Student</button>
           <button type="button" class="btn btn-secondary btn-sm remove_student"><span class="glyphicon glyphicon-minus"></span> Remove </button>
@@ -72,7 +73,7 @@
         <div class="form-group">
           <label for="faculty">Faculty</label>
           <div class="facultyMultiple">
-            <div><input type="text" class="form-control faculty" name="faculty[]" ng-model="faculty" placeholder="Faculty's name"></div>
+            <div><input type="text" class="form-control faculty" name="faculty[]" ng-model="faculty" ng-model="clearAll" placeholder="Faculty's name"></div>
           </div>
           <button type="button" class="btn btn-secondary btn-sm add_faculty"><span class="glyphicon glyphicon-plus"></span> Add Faculty</button>
           <button type="button" class="btn btn-secondary btn-sm remove_faculty"><span class="glyphicon glyphicon-minus"></span> Remove </button>
@@ -93,7 +94,7 @@
       <div class="col-md-9 seekingStudents">
         <div class="form-group">
           <label for="prereq">Prerequisites</label>
-          <input type="text" class="form-control" id="prereq" name="prereq" ng-model="prerequisites" placeholder="Example: Data Structures and Algorithms, Discrete Structures, Python, OOP, etc.">
+          <input type="text" class="form-control" id="prereq" name="prereq" ng-model="prerequisites" ng-model="clearAll" placeholder="Example: Data Structures and Algorithms, Discrete Structures, Python, OOP, etc.">
         </div>
       </div>
     </div>
@@ -101,13 +102,13 @@
       <div class="col-md-12 seekingStudents">
         <div class="form-group">
           <label for="howToApply">How to aply?</label>
-          <textarea class="form-control" name="howToApply" id="howToApply" ng-model="howToApply" rows="5"></textarea>
+          <textarea class="form-control" name="howToApply" id="howToApply" ng-model="howToApply" ng-model="clearAll" rows="5"></textarea>
         </div>
       </div>
     </div>
     <div class="row row-register">
       <div class="form-group">
-        <input id="submit" class="btnregister center-block" ng-click="insertDatabase()" name="submit" type="submit" value="Register" class="btn btn-primary">
+        <input id="submit" class="btnregister center-block" ng-click="insertDatabase($event)" name="submit" type="submit" value="Register" class="btn btn-primary">
       </div>
     </div>
   </div>
