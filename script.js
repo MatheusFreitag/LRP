@@ -24,6 +24,80 @@ app.controller("singleProjectCtrl", function($scope, $window){
 app.controller('registerCtrl', function($scope, $http){
   $scope.isCollapsed = false;
 
+  $scope.areas = [
+    {
+      value: 'Artificial Intelligence',
+      label: 'Artificial Intelligence'
+    },
+    {
+      value: 'Cognitive Science',
+      label: 'Cognitive Science'
+    },
+    {
+      value: 'Computer Engineering',
+      label: 'Computer Engineering'
+    },
+    {
+      value: 'Computer Graphics',
+      label: 'Computer Graphics'
+    },
+    {
+      value: 'Network',
+      label: 'Network'
+    },
+    {
+      value: 'Data Processing',
+      label: 'Data Processing'
+    },
+    {
+      value: 'Database Systems',
+      label: 'Database Systems'
+    },
+    {
+      value: 'Cybersecurity',
+      label: 'Cybersecurity'
+    },
+    {
+      value: 'Robotics',
+      label: 'Robotics'
+    },
+    {
+      value: 'Software Engineering',
+      label: 'Software Engineering'
+    },
+    {
+      value: 'System Analysis',
+      label: 'System Analysis'
+    },
+    {
+      value: 'Telecomunication Engineering',
+      label: 'Telecomunication Engineering'
+    },
+    {
+      value: 'Mobile',
+      label: 'Mobile'
+    },
+    {
+      value: 'Web Design',
+      label: 'Web Design'
+    }
+  ]
+
+  $scope.status = [
+    {
+      value: 'Active: Seeking Students',
+      label: 'Active: Seeking Students'
+    },
+    {
+      value: 'Active: Not Seeking Students',
+      label: 'Active: Not Seeking Students'
+    },
+    {
+      value: 'Arquived',
+      label: 'Arquived'
+    }
+  ]
+
   $scope.insertDatabase = function(event){
     var request = $http({
       method: "post",
@@ -33,8 +107,10 @@ app.controller('registerCtrl', function($scope, $http){
           description   : $scope.description,
           email         : $scope.email,
           externalLink  : $scope.externalLink,
+          areaOfStudy   : $scope.areaList.value,
           students      : $scope.students,
           faculty       : $scope.faculty,
+          status        : $scope.statusList.value,
           prerequisites : $scope.prerequisites,
           howToApply    : $scope.howToApply,
       },

@@ -9,12 +9,14 @@ $title = $request->title;
 $description = $request->description;
 $email = $request->email;
 $externalLink = $request->externalLink;
+$areaOfStudy = $request->areaOfStudy;
 $students = $request->students;
 $faculty = $request->faculty;
+$status = $request->status;
 $prerequisites = $request->prerequisites;
 $howToApply = $request->howToApply;
 
-$sql = "INSERT INTO projects(title, description, email, externalLink, students, faculty, prerequisites, howToApply) VALUES('$title', '$description', '$email', '$externalLink', '$students', '$faculty', '$prerequisites', '$howToApply')";
+$sql = "INSERT INTO projects(title, description, email, externalLink, area, students, faculty, status, prerequisites, howToApply) VALUES('$title', '$description', '$email', '$externalLink', '$areaOfStudy', '$students', '$faculty', '$status', '$prerequisites', '$howToApply')";
 
 try {
     //connect as appropriate as above

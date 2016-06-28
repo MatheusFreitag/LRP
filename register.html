@@ -41,21 +41,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="area_study">Area of study</label>
-          <select class="form-control" name="area_study" id="area_study">
-            <option>Artificial Intelligence</option>
-            <option>Cognitive Science</option>
-            <option>Computer Engineering</option>
-            <option>Computer Graphics</option>
-            <option>Network</option>
-            <option>Data Processing</option>
-            <option>Database Systems</option>
-            <option>Cybersecurity</option>
-            <option>Robotics</option>
-            <option>Software Engineering</option>
-            <option>System Analysis</option>
-            <option>Telecomunication Engineering</option>
-            <option>Mobile</option>
-            <option>Web Design</option>
+          <select class="form-control" ng-model="areaList" ng-options="area as area.label for area in areas">
           </select>
         </div>
       </div>
@@ -84,10 +70,7 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="status">Status</label>
-          <select class="form-control" name="status" id="status" required>
-            <option value="activeSeeking">Active: Seeking Students</option>
-            <option>Active: Not Seeking Students</option>
-            <option>Arquived</option>
+          <select class="form-control" ng-model="statusList" ng-options="status as status.label for status in status">
           </select>
         </div>
       </div>
