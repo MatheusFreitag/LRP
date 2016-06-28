@@ -1,18 +1,23 @@
 var app = angular.module('portal', ['ui.router', 'ngAnimate', 'ui.bootstrap']);
 
-app.controller("projectsCtrl", function($scope, $http){
+
+app.controller("projectsCtrl", function($scope, $http, $window){
   $http.get("projects.php").success(function(data){
     $scope.listOfProjects = data;
+    $window.projects = $scope.listOfProjects;
   })
 
-  $scope.projectDetails = function(id){
-    var request = $http({
-      method: "post",
-      url: "singleProject.php",
-      data: { id : id },
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+  $scope.filterByID = function(id){
+    $scope.singleProject = $window.projects;
+    var result = $scope.singleProject.filter(function( obj ) {
+        return obj.id == id;
     })
+    $window.filtered = result;
   }
+});
+
+app.controller("singleProjectCtrl", function($scope, $window){
+  $scope.filteredProject = $window.filtered;
 });
 
 
@@ -75,13 +80,4 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/sp',
             templateUrl: 'singleProject.html'
         });
-});
-
-app.controller("singleProjectCtrl", function($scope, $http){
-  // this is where the JSON from api.php is consumed
-  $http.get('singleProject.php').
-      success(function(data) {
-          // here the data from the api is assigned to a variable named users
-          $scope.singleProject = data;
-      });
 });
