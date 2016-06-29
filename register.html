@@ -10,7 +10,7 @@
     <uib-alert ng-show="isCollapsed" type="success" class="alert" close="closeAlert()">Your project was successfully registered!</uib-alert>
     <form role="form" name="form" method="post" action="">
       <div  class="row row-register">
-        <div ng-hide="true" class="col-md-2">
+        <div  class="col-md-2">
           <label class="control-label" for="inputSuccess1">Picture</label>
           <input type="hidden" ng-model="picturePath" class="picturePath" name="picturePath" value="">
           <div class="dropzone" id="myDropzone"></div>
@@ -44,7 +44,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="area_study">Area of study</label>
-          <select class="form-control" ng-model="areaList" ng-options=" area.label as area.label for area in areas">
+          <select ng-init="areaList = areas[0]" class="form-control" ng-model="areaList" ng-options=" area as area.label for area in areas">
           </select>
         </div>
       </div>
@@ -73,14 +73,14 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="status">Status</label>
-          <select class="form-control" ng-model="statusList" ng-options="status as status.label for status in status">
+          <select ng-init="statusList = status[0]" class="form-control" ng-model="statusList" ng-options="status as status.label for status in status">
           </select>
         </div>
       </div>
       <div class="col-md-9 seekingStudents">
         <div class="form-group">
-          <label for="prereq">Prerequisites</label>
-          <input type="text" class="form-control" id="prereq" name="prereq" ng-model="prerequisites" ng-model="clearAll" placeholder="Example: Data Structures and Algorithms, Discrete Structures, Python, OOP, etc.">
+          <label for="prereq">Required Skills</label>
+          <textarea type="text" class="form-control" id="prereq" name="prereq" ng-model="prerequisites" ng-model="clearAll" placeholder="Example: Data Structures and Algorithms, Discrete Structures, Python, OOP, etc." row="2"></textarea>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ include "connect.php";
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
-//$image =  $request->image;
+$image =  $request->image;
 $title = $request->title;
 $description = $request->description;
 $email = $request->email;
@@ -18,7 +18,9 @@ $prerequisites = $request->prerequisites;
 $howToApply = $request->howToApply;
 
 
-$sql = "INSERT INTO projects( title, description, email, externalLink, area, students, faculty, status, prerequisites, howToApply) VALUES($title', '$description', '$email', '$externalLink', '$areaOfStudy', '$students', '$faculty', '$status', '$prerequisites', '$howToApply')";
+$sql = "INSERT INTO projects(picture, title, description, email, externalLink, area, students, faculty, status, prerequisites, howToApply) VALUES('$image','$title', '$description', '$email', '$externalLink', '$areaOfStudy', '$students', '$faculty', '$status', '$prerequisites', '$howToApply')";
+
+echo "Here: " . $image;
 
 try {
     //connect as appropriate as above
