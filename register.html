@@ -41,7 +41,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="area_study">Area of study</label>
-          <select class="form-control" ng-model="areaList" ng-options="area as area.label for area in areas">
+          <select class="form-control" ng-model="areaList" ng-options="area as area.label for area in areas" required>
           </select>
         </div>
       </div>
@@ -70,7 +70,7 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="status">Status</label>
-          <select class="form-control" ng-model="statusList" ng-options="status as status.label for status in status">
+          <select class="form-control" ng-model="statusList" ng-options="status as status.label for status in status" required>
           </select>
         </div>
       </div>
