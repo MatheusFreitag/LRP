@@ -93,16 +93,22 @@ app.controller('registerCtrl', function($scope, $http){
       label: 'Active: Not Seeking Students'
     },
     {
-      value: 'Arquived',
-      label: 'Arquived'
+      value: 'Dormant',
+      label: 'Dormant'
+    },
+    {
+      value: 'Completed',
+      label: 'Completed'
     }
   ]
 
   $scope.insertDatabase = function(event){
+    $scope.picturePath = $(".picturePath").val();
     var request = $http({
       method: "post",
       url: "register.php",
       data: {
+          image         : $scope.picturePath,
           title         : $scope.title,
           description   : $scope.description,
           email         : $scope.email,
@@ -116,6 +122,7 @@ app.controller('registerCtrl', function($scope, $http){
       },
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     })
+
     $scope.isCollapsed    = !$scope.isCollapsed;
     $scope.title          = "";
     $scope.description    = "";

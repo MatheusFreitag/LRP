@@ -1,15 +1,18 @@
 <div class="container">
   <link rel="stylesheet" href="register.css"charset="utf-8">
+  <link rel="stylesheet" href="dropzone.css" media="screen" title="no title" charset="utf-8">
   <a href="resources/logout.php"><i class="glyphicon glyphicon-log-out"></i> logout</a>
+  <script src="dropzone.js"></script>
+  <script src="picture.js"></script>
   <h1>REGISTER A NEW PROJECT</h1>
   </br>
   <div ng-controller="registerCtrl">
     <uib-alert ng-show="isCollapsed" type="success" class="alert" close="closeAlert()">Your project was successfully registered!</uib-alert>
     <form role="form" name="form" method="post" action="">
-      <div class="row row-register">
-        <div class="col-md-2">
+      <div  class="row row-register">
+        <div  class="col-md-2">
           <label class="control-label" for="inputSuccess1">Picture</label>
-          <input type="hidden" class="picturePath" name="picturePath" value="">
+          <input type="hidden" ng-model="picturePath" class="picturePath" name="picturePath" value="">
           <div class="dropzone" id="myDropzone"></div>
         </div>
         <div class="col-md-10">
@@ -41,7 +44,11 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="area_study">Area of study</label>
+<<<<<<< HEAD
           <select class="form-control" ng-model="areaList" ng-options="area as area.label for area in areas" required>
+=======
+          <select ng-init="areaList = areas[0]" class="form-control" ng-model="areaList" ng-options=" area as area.label for area in areas">
+>>>>>>> uploadImage
           </select>
         </div>
       </div>
@@ -70,14 +77,18 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="status">Status</label>
+<<<<<<< HEAD
           <select class="form-control" ng-model="statusList" ng-options="status as status.label for status in status" required>
+=======
+          <select ng-init="statusList = status[0]" class="form-control" ng-model="statusList" ng-options="status as status.label for status in status">
+>>>>>>> uploadImage
           </select>
         </div>
       </div>
       <div class="col-md-9 seekingStudents">
         <div class="form-group">
-          <label for="prereq">Prerequisites</label>
-          <input type="text" class="form-control" id="prereq" name="prereq" ng-model="prerequisites" ng-model="clearAll" placeholder="Example: Data Structures and Algorithms, Discrete Structures, Python, OOP, etc.">
+          <label for="prereq">Required Skills</label>
+          <textarea type="text" class="form-control" id="prereq" name="prereq" ng-model="prerequisites" ng-model="clearAll" placeholder="Example: Data Structures and Algorithms, Discrete Structures, Python, OOP, etc." row="2"></textarea>
         </div>
       </div>
     </div>
