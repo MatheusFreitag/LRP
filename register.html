@@ -1,15 +1,18 @@
 <div class="container">
   <link rel="stylesheet" href="register.css"charset="utf-8">
+  <link rel="stylesheet" href="dropzone.css" media="screen" title="no title" charset="utf-8">
   <a href="resources/logout.php"><i class="glyphicon glyphicon-log-out"></i> logout</a>
+  <script src="dropzone.js"></script>
+  <script src="picture.js"></script>
   <h1>REGISTER A NEW PROJECT</h1>
   </br>
   <div ng-controller="registerCtrl">
     <uib-alert ng-show="isCollapsed" type="success" class="alert" close="closeAlert()">Your project was successfully registered!</uib-alert>
     <form role="form" name="form" method="post" action="">
-      <div class="row row-register">
-        <div class="col-md-2">
+      <div  class="row row-register">
+        <div ng-hide="true" class="col-md-2">
           <label class="control-label" for="inputSuccess1">Picture</label>
-          <input type="hidden" class="picturePath" name="picturePath" value="">
+          <input type="hidden" ng-model="picturePath" class="picturePath" name="picturePath" value="">
           <div class="dropzone" id="myDropzone"></div>
         </div>
         <div class="col-md-10">
@@ -41,7 +44,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="area_study">Area of study</label>
-          <select class="form-control" ng-model="areaList" ng-options="area as area.label for area in areas">
+          <select class="form-control" ng-model="areaList" ng-options=" area.label as area.label for area in areas">
           </select>
         </div>
       </div>
