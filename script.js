@@ -1,4 +1,4 @@
-var app = angular.module('portal', ['ui.router', 'ngAnimate', 'ui.bootstrap']);
+var app = angular.module('portal', ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ngRoute', 'toaster']);
 
 
 app.controller("projectsCtrl", function($scope, $http, $window){
@@ -142,6 +142,42 @@ app.controller('registerCtrl', function($scope, $http){
 
 });
 
+
+app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
+    //initially set those objects to null to avoid undefined error
+    $scope.login = {};
+    $scope.signup = {};
+    $scope.doLogin = function (customer) {
+        Data.post('login', {
+            customer: customer
+        }).then(function (results) {
+            Data.toast(results);
+            if (results.status == "success") {
+                $location.path('dashboard');
+            }
+        });
+    };
+    $scope.signup = {email:'',password:'',name:'',phone:'',address:''};
+    $scope.signUp = function (customer) {
+        Data.post('signUp', {
+            customer: customer
+        }).then(function (results) {
+            Data.toast(results);
+            if (results.status == "success") {
+                $location.path('dashboard');
+            }
+        });
+    };
+    $scope.logout = function () {
+        Data.get('logout').then(function (results) {
+            Data.toast(results);
+            $location.path('login');
+        });
+    }
+});
+
+
+
 app.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/home');
     $stateProvider
@@ -156,11 +192,115 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'projects.html'
         })
         .state('register', {
-            url: '/register',
-            templateUrl: 'register.html'
+            url: '/login',
+            templateUrl: 'login.html',
+            controller: 'authCtrl'
         })
         .state('singleProject', {
             url: '/sp',
             templateUrl: 'singleProject.html'
+        })
+        .state('signup', {
+            url: '/signup',
+            templateUrl: 'signup.html',
+            controller: 'authCtrl'
+        })
+        .state('dashboard', {
+            url: '/dashboard',
+            templateUrl: 'register.html',
+            controller: 'authCtrl'
+        })
+        .state('logout', {
+            url: '/logout',
+            templateUrl: 'login.html',
+            controller: 'logoutCtrl'
+        })
+        .state('about', {
+            url: '/about',
+            templateUrl: 'about.html'
         });
+}).run(function ($rootScope, $location, Data) {
+    $rootScope.$on("$routeChangeStart", function (event, next, current) {
+        $rootScope.authenticated = false;
+        Data.get('session').then(function (results) {
+            if (results.uid) {
+                $rootScope.authenticated = true;
+                $rootScope.uid = results.uid;
+                $rootScope.name = results.name;
+                $rootScope.email = results.email;
+            } else {
+                var nextUrl = next.$$route.originalPath;
+                if (nextUrl == '/signup' || nextUrl == '/login') {
+
+                } else {
+                    $location.path("/login");
+                }
+            }
+        });
+    });
 });
+
+app.factory("Data", ['$http', 'toaster',
+    function ($http, toaster) { // This service connects to our REST API
+
+        var serviceBase = 'api/v1/';
+
+        var obj = {};
+        obj.toast = function (data) {
+            toaster.pop(data.status, "", data.message, 10000, 'trustedHtml');
+        }
+        obj.get = function (q) {
+            return $http.get(serviceBase + q).then(function (results) {
+                return results.data;
+            });
+        };
+        obj.post = function (q, object) {
+            return $http.post(serviceBase + q, object).then(function (results) {
+                return results.data;
+            });
+        };
+        obj.put = function (q, object) {
+            return $http.put(serviceBase + q, object).then(function (results) {
+                return results.data;
+            });
+        };
+        obj.delete = function (q) {
+            return $http.delete(serviceBase + q).then(function (results) {
+                return results.data;
+            });
+        };
+
+        return obj;
+}]);
+
+app.directive('focus', function() {
+    return function(scope, element) {
+        element[0].focus();
+    }
+});
+
+app.directive('passwordMatch', [function () {
+    return {
+        restrict: 'A',
+        scope:true,
+        require: 'ngModel',
+        link: function (scope, elem , attrs,control) {
+            var checker = function () {
+
+                //get the value of the first password
+                var e1 = scope.$eval(attrs.ngModel);
+
+                //get the value of the other password
+                var e2 = scope.$eval(attrs.passwordMatch);
+                if(e2!=null)
+                return e1 == e2;
+            };
+            scope.$watch(checker, function (n) {
+
+                //set the form control to valid if both
+                //passwords are the same, else invalid
+                control.$setValidity("passwordNoMatch", n);
+            });
+        }
+    };
+}]);

@@ -28,17 +28,24 @@
     <!-- Local Resources ------------------->
     <link rel="stylesheet" href="stylesheet.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="dropzone.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="toaster.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="custom.css" media="screen" title="no title" charset="utf-8">
+    <script src="toaster.js"></script>
+    <script src="angular-route.min.js"></script>
     <script src="script.js"></script>
 
 
 
   </head>
 
-  <body>
+  <body ng-cloak="">
       <div ng-include="'navbar.html'"></div>
       <div ui-view autoscroll="false"></div>
 
 
   </body>
+
+  <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
+
 
 </html>

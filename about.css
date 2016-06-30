@@ -1,0 +1,8 @@
+.about{
+  margin-top        : 150px;
+}
+
+.borderLeft{
+    text-align      : justify;
+    border-left     : 1px groove;
+}
