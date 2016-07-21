@@ -1,57 +1,14 @@
 <div class="container" ng-controller="projectsCtrl">
   <link rel="stylesheet" href="projects.css"  charset="utf-8">
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="input-group">
-        <input type="text" ng-model="filterSearch" class="form-control" placeholder="Search for...">
-        <span id="filter" class="input-group-btn">
-          <button class="btn btn-default" type="button">Filter Search</button>
-        </span>
-      </div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
-  </div><!-- /.row -->
 
-
-
-  <div id="refine-search">
-    <div class="sortby">
-      <form>
-        <p>Sort By</p>
-        <div class="radio">
-          <input type="radio" name="gender" value="yes" checked> Alphabetical<br>
-          <input type="radio" name="gender" value="no"> Most Recent<br>
-          <input type="radio" name="gender" value="no"> Oldest<br>
-        </div>
-      </form>
-    </div>
-
-    <form class="status">
-      <p>Status</p>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox"> Active
-        </label>
-        <br>
-        <label>
-          <input type="checkbox"> Archived
-        </label>
-      </div>
-    </form>
-
-    <form class="students">
-      <p>Seeking for Students?</p>
-      <div class="radio">
-        <input type="radio" name="gender" value="yes" checked> Yes<br>
-        <input type="radio" name="gender" value="no"> No<br>
-      </div>
-    </form>
-
+  <div class="input-group">
+    <input type="text" ng-model="filterSearch" class="form-control" placeholder="Search for..." aria-describedby="basic-addon1">
   </div>
 
   <div id="results-search" ng-repeat="project in listOfProjects | filter:filterSearch">
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
       <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">{{project.title}}</h2>
+        <h2><a ui-sref="singleProject" ng-click="filterByID(project.id)" lass="mdl-card__title-text">{{project.title}}</a></h2>
       </div>
       <div class="mdl-card__supporting-text">
         <img class="photoOfProject" ng-src="uploads/{{project.picture}}" width: "100px"; height="80px">

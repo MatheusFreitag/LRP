@@ -23,6 +23,7 @@ app.controller("singleProjectCtrl", function($scope, $window){
 
 app.controller('registerCtrl', function($scope, $http){
   $scope.isCollapsed = false;
+  $scope.required = true;
 
   $scope.areas = [
     {
@@ -104,26 +105,46 @@ app.controller('registerCtrl', function($scope, $http){
 
   $scope.insertDatabase = function(event){
     $scope.picturePath = $(".picturePath").val();
-    var request = $http({
-      method: "post",
-      url: "register.php",
-      data: {
-          image         : $scope.picturePath,
-          title         : $scope.title,
-          description   : $scope.description,
-          email         : $scope.email,
-          externalLink  : $scope.externalLink,
-          areaOfStudy   : $scope.areaList.value,
-          students      : $scope.students,
-          faculty       : $scope.faculty,
-          status        : $scope.statusList.value,
-          prerequisites : $scope.prerequisites,
-          howToApply    : $scope.howToApply,
-      },
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-    })
+    var valid = ($scope.picturePath &&
+                  $scope.title &&
+                  $scope.description
+                  && $scope.email
+                  && $scope.externalLink
+                  && $scope.areaList.value
+                  && $scope.students
+                  &&$scope.faculty
+                  && $scope.statusList.value
+                  && $scope.prerequisites
+                  && $scope.howToApply
+    );
 
-    $scope.isCollapsed    = !$scope.isCollapsed;
+    if (valid){
+      var request = $http({
+        method: "post",
+        url: "register.php",
+        data: {
+            image         : $scope.picturePath,
+            title         : $scope.title,
+            description   : $scope.description,
+            email         : $scope.email,
+            externalLink  : $scope.externalLink,
+            areaOfStudy   : $scope.areaList.value,
+            students      : $scope.students,
+            faculty       : $scope.faculty,
+            status        : $scope.statusList.value,
+            prerequisites : $scope.prerequisites,
+            howToApply    : $scope.howToApply,
+        },
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      })
+    }
+    else{
+      alert("All fields are required!");
+    }
+
+    if (valid){
+      $scope.isCollapsed    = !$scope.isCollapsed;
+    }
     $scope.title          = "";
     $scope.description    = "";
     $scope.email          = "";
