@@ -28,9 +28,9 @@ h3{
 
 .mdl-button{
   background-color: #90141d;
-  color: #ddd;
+  color: #fff;
 }
 
 .mdl-button:hover{
-  background-color: #b71c1c;
+  background-color: #90141d;
 }
